@@ -17,9 +17,6 @@ args = vars(ap.parse_args())
 # load the image
 image = cv2.imread(args["image"])
 
-
-#blue = ( [0, 0, 0], [250, 0, 0])
-
 red = ([100, 15, 17], [200, 56, 50])
 blue = ([4, 31, 50], [50, 187, 250])
 yellow = ([180, 140, 25], [255, 255, 100])

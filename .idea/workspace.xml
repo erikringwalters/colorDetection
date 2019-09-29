@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="59b4b7a1-7cc6-4722-b4c0-a51bf059529d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/colorDetection.py" afterPath="$PROJECT_DIR$/colorDetection.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/colorDetectionOriginal.py" afterPath="$PROJECT_DIR$/colorDetectionOriginal.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +17,8 @@
       <file leaf-file-name="colorDetection.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/colorDetection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+            <state relative-caret-position="335">
+              <caret line="31" column="23" lean-forward="false" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
               <folding>
                 <element signature="e#115#133#0" expanded="true" />
               </folding>
@@ -271,8 +270,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/colorDetection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        <state relative-caret-position="335">
+          <caret line="31" column="23" lean-forward="false" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
           <folding>
             <element signature="e#115#133#0" expanded="true" />
           </folding>

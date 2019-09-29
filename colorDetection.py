@@ -17,9 +17,13 @@ args = vars(ap.parse_args())
 # load the image
 image = cv2.imread(args["image"])
 
-red = ([100, 15, 17], [200, 56, 50])
+#red = ([100, 15, 17], [200, 56, 50])
+#[92, 9, 15] lower limit red
+
+red = ([66, 3, 8], [247, 52, 45])
 blue = ([4, 31, 50], [50, 187, 250])
 yellow = ([180, 140, 25], [255, 255, 100])
+green = ([23, 71, 49], [94, 235, 103])
 gray = ([65, 86, 103], [128, 133, 145])
 
 def Reverse(tup):
@@ -32,6 +36,7 @@ boundaries = [
 	red,
 	blue,
     yellow,
+    green,
     gray
 ]
 

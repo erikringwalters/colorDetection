@@ -25,14 +25,10 @@ blue = ([4, 31, 50], [50, 187, 250])
 yellow = ([180, 140, 25], [255, 255, 100])
 gray = ([65, 86, 103], [128, 133, 145])
 
-
-# Reversing a tuple using slicing technique
-# New tuple is created
-def Reverse(tuples):
-    new_tup = tuples
-    new_tup[0].reverse()
-    new_tup[1].reverse()
-    return new_tup
+def Reverse(tup):
+    for x in tup:
+        x.reverse()
+    return tup
 
 # define the list of boundaries
 boundaries = [

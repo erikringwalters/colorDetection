@@ -25,6 +25,7 @@ blue = ([4, 31, 50], [50, 187, 250])
 yellow = ([180, 140, 25], [255, 255, 100])
 green = ([23, 71, 49], [94, 235, 103])
 gray = ([65, 86, 103], [128, 133, 145])
+black = ([0, 0, 0], [60, 60, 49])
 
 def Reverse(tup):
     for x in tup:
@@ -37,7 +38,8 @@ boundaries = [
 	blue,
     yellow,
     green,
-    gray
+    gray,
+    black
 ]
 
 for boundary in boundaries:

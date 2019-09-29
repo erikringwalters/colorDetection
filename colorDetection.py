@@ -18,20 +18,20 @@ args = vars(ap.parse_args())
 image = cv2.imread(args["image"])
 
 
-blue = ( [0, 0, 0], [250, 0, 0])
+#blue = ( [0, 0, 0], [250, 0, 0])
 
-# red = ([17, 15, 100], [50, 56, 200])
-#blue = ([86, 31, 4], [220, 88, 50])
-# yellow = ([25, 146, 190], [62, 174, 250])
+red = ([17, 15, 100], [50, 56, 200])
+blue = ([50, 31, 4], [250, 88, 50])
+yellow = ([25, 140, 180], [100, 255, 255])
 # gray = ([103, 86, 65], [145, 133, 128])
 
 
 
 # define the list of boundaries
 boundaries = [
-	# red,
-	blue
-    # yellow,
+	red,
+	blue,
+    yellow,
     # gray
 ]
 

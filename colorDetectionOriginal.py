@@ -17,8 +17,6 @@ args = vars(ap.parse_args())
 # load the image
 image = cv2.imread(args["image"])
 
-var red = ([17, 15, 100], [50, 56, 200])
-
 # define the list of boundaries
 boundaries = [
 	([17, 15, 100], [50, 56, 200]), # Red

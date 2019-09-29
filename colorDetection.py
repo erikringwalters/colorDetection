@@ -20,20 +20,19 @@ image = cv2.imread(args["image"])
 
 #blue = ( [0, 0, 0], [250, 0, 0])
 
-red = ([17, 15, 100], [50, 56, 200])
-blue = ([50, 31, 4], [250, 88, 50])
-yellow = ([25, 140, 180], [100, 255, 255])
-gray = ([103, 86, 65], [145, 133, 128])
+red = ([100, 15, 17], [200, 56, 50])
+blue = ([4, 31, 50], [50, 187, 250])
+yellow = ([180, 140, 25], [255, 255, 100])
+gray = ([65, 86, 103], [128, 133, 145])
 
 
 # Reversing a tuple using slicing technique
 # New tuple is created
 def Reverse(tuples):
-    new_tup = tuples[::-1]
+    new_tup = tuples
+    new_tup[0].reverse()
+    new_tup[1].reverse()
     return new_tup
-
-print(red)
-print(Reverse(red))
 
 # define the list of boundaries
 boundaries = [
@@ -42,6 +41,11 @@ boundaries = [
     yellow,
     gray
 ]
+
+for boundary in boundaries:
+    #Lists read in reverse (BRG)
+    Reverse(boundary)
+
 
 # loop over the boundaries
 for (lower, upper) in boundaries:

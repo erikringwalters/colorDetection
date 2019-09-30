@@ -17,17 +17,19 @@ args = vars(ap.parse_args())
 # load the image
 image = cv2.imread(args["image"])
 
-#red = ([100, 15, 17], [200, 56, 50])
-#[92, 9, 15] lower limit red
-
-red = ([66, 3, 8], [247, 52, 45])
-blue = ([4, 50, 100], [50, 90, 200])
-yellow = ([180, 140, 25], [255, 255, 100])
-green = ([25, 88, 19], [106, 208, 109])
-gray = ([65, 86, 103], [128, 133, 145])
-black = ([0, 0, 0], [60, 60, 49])
-#white = ([145, 134, 118], [255, 255, 255])
 white = ([153, 147, 136], [255, 255, 255])
+red = ([66, 3, 10], [247, 35, 35])
+orange = ([150, 0, 0],[250, 100, 50])
+darkGreen = ([0, 50, 30],[50, 80, 60])
+black = ([0, 0, 0], [60, 60, 49])
+brown = ([100 ,20, 10],[150, 100, 50])
+green = ([25, 100, 19], [106, 208, 80])
+yellow = ([180, 140, 25], [255, 255, 100])
+purple = ([75, 0, 50],[150, 50, 150])
+blue = ([4, 60, 100], [50, 90, 255])
+#gray = ([65, 86, 103], [128, 133, 145])
+
+
 
 def Reverse(tup):
     for x in tup:
@@ -36,13 +38,18 @@ def Reverse(tup):
 
 # define the list of boundaries
 boundaries = [
+    white,
 	red,
-	blue,
-    yellow,
-    green,
-    gray,
+	orange,
+    darkGreen,
     black,
-    white
+    brown,
+    green,
+    yellow,
+    purple,
+    blue,
+ #   gray,
+
 ]
 
 for boundary in boundaries:

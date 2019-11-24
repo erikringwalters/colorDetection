@@ -28,6 +28,7 @@ yellow = ([180, 140, 25], [255, 255, 100])
 purple = ([75, 0, 50],[150, 50, 150])
 blue = ([4, 60, 100], [50, 90, 255])
 #gray = ([65, 86, 103], [128, 133, 145])
+switchWhite = ([200, 200, 200], [255, 255, 255])
 
 
 
@@ -39,8 +40,9 @@ def Reverse(tup):
 # define the list of boundaries
 boundaries = [
     white,
-	red,
-	orange,
+    # switchWhite,
+    red,
+    orange,
     darkGreen,
     black,
     brown,

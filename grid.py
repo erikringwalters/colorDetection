@@ -12,24 +12,20 @@ dim = image.shape
 
 window_name = 'Image'
 
-row = [-1,-1,-1]
+thickness = 4
 
-# blocks = np.array([row, row, row], np.int32) 
-blocks = row
-print(blocks)
 
 for i in range(0,3):
     for j in range(0,3):
-        startx = int((dim[0]) * ((i)/3))
-        starty = int((dim[1]) * ((j)/3))
-        endx = int((dim[0]) * ((i + 1)/3))
-        endy = int((dim[1]) * ((j + 1)/3))
+        startx = int((dim[0]) * ((i)/3))# - int(thickness/2)
+        starty = int((dim[1]) * ((j)/3))# - int(thickness/2)
+        endx = int((dim[0]) * ((i + 1)/3))# - int(thickness/2)
+        endy = int((dim[1]) * ((j + 1)/3))# - int(thickness/2)
         start = (startx, starty)
         end = (endx,endy)
         color = (i*75, 0, j*75)
-        thickness = 5
 
-        print(start, end, color, thickness)
+        # print(start, end, color, thickness)
 
         cv2.rectangle(image, start, end, color, thickness)
 

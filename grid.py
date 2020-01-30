@@ -20,11 +20,13 @@ print(blocks)
 
 for i in range(0,3):
     for j in range(0,3):
-        start = (0,0)
+        startx = int((dim[0]) * ((i)/3))
+        starty = int((dim[1]) * ((j)/3))
         endx = int((dim[0]) * ((i + 1)/3))
         endy = int((dim[1]) * ((j + 1)/3))
+        start = (startx, starty)
         end = (endx,endy)
-        color = (200, 0, 0)
+        color = (i*75, 0, j*75)
         thickness = 5
 
         print(start, end, color, thickness)

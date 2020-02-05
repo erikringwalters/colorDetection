@@ -5,15 +5,38 @@ import cv2
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help = "path to the image")
+# ap.add_argument("-n", "--numOfRects", help = "number of rectangles on grid")
+
 args = vars(ap.parse_args())
 
 white = ([130, 130, 130], [255, 255, 255])
-red = ([50, 0, 0], [255, 70, 50])
+red = ([50, 0, 0], [255, 100, 50])
 yellow = ([180, 140, 25], [255, 255, 150])
 blue = ([4, 60, 50], [80, 130, 255])
 
 # load the image
 image = cv2.imread(args["image"])
+# rects = cv2.imread(args["rects"])
+
+imageDimensions = image.shape
+
+
+def buildGrid(numOfRects, thickness, dim):
+	rect = []
+	grid = []
+	for i in range(0,numOfRects):
+		for j in range(0,numOfRects):
+			startx = int((dim[0]) * (i/numOfRects)) + int(thickness/2)
+			starty = int((dim[1]) * (j/numOfRects)) + int(thickness/2)
+			endx = int((dim[0]) * ((i + 1)/numOfRects)) - int(thickness/2)
+			endy = int((dim[1]) * ((j + 1)/numOfRects)) - int(thickness/2)
+			start = (startx, starty)
+			end = (endx,endy)
+			color = (255,255,255)
+			rect = [start, end, color, thickness]
+			cv2.rectangle(image, start, end, color, thickness)
+			# grid.append(rect)
+	return grid
 
 
 def Reverse(tup):
@@ -29,6 +52,7 @@ boundaries = [
     blue,
 
 ]
+grid = buildGrid(3, 4, imageDimensions)
 
 for boundary in boundaries:
     #Lists read in reverse (BRG)
@@ -56,3 +80,4 @@ output = cv2.bitwise_and(image, image, mask = mask)
 
 cv2.imshow("images", np.hstack([image, output]))
 cv2.waitKey(0)
+

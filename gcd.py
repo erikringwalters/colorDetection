@@ -21,6 +21,21 @@ image = cv2.imread(args["image"])
 imageDimensions = image.shape
 
 
+
+def Reverse(tup):
+    for x in tup:
+        x.reverse()
+    return tup
+
+# define the list of boundaries
+boundaries = [
+    white,
+	red,
+    yellow,
+    blue
+]
+
+
 def buildGrid(numOfRects, thickness, dim):
 	rect = []
 	grid = []
@@ -38,20 +53,6 @@ def buildGrid(numOfRects, thickness, dim):
 			# grid.append(rect)
 	return grid
 
-
-def Reverse(tup):
-    for x in tup:
-        x.reverse()
-    return tup
-
-# define the list of boundaries
-boundaries = [
-    white,
-	red,
-    yellow,
-    blue,
-
-]
 grid = buildGrid(3, 4, imageDimensions)
 
 for boundary in boundaries:
@@ -72,12 +73,8 @@ for (lower, upper) in boundaries:
 
 	# show the images
 	cv2.imshow("images", np.hstack([image, output]))
+
 	cv2.waitKey(0)
 
 # brightLAB = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
-
-output = cv2.bitwise_and(image, image, mask = mask)
-
-cv2.imshow("images", np.hstack([image, output]))
-cv2.waitKey(0)
 

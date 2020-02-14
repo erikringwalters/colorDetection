@@ -5,7 +5,7 @@ import cv2
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help = "path to the image")
-# ap.add_argument("-n", "--numOfRects", help = "number of rectangles on grid")
+ap.add_argument("-n", "--numOfSquares", help = "number of rectangles on grid")
 
 args = vars(ap.parse_args())
 
@@ -16,10 +16,29 @@ blue = ([4, 60, 50], [80, 130, 255])
 
 # load the image
 image = cv2.imread(args["image"])
-# rects = cv2.imread(args["rects"])
+Squares = args["numOfSquares"]
+
+Squares = int(Squares)
 
 imageDimensions = image.shape
 
+
+def buildGrid(numOfSquares, thickness, dim):
+	rect = []
+	grid = []
+	for i in range(0,numOfSquares):
+		for j in range(0,numOfSquares):
+			startx = int((dim[0]) * (i/numOfSquares)) + int(thickness/2)
+			starty = int((dim[1]) * (j/numOfSquares)) + int(thickness/2)
+			endx = int((dim[0]) * ((i + 1)/numOfSquares)) - int(thickness/2)
+			endy = int((dim[1]) * ((j + 1)/numOfSquares)) - int(thickness/2)
+			start = (startx, starty)
+			end = (endx,endy)
+			color = (255,255,255)
+			rect = [start, end, color, thickness]
+			cv2.rectangle(image, start, end, color, thickness)
+			grid.append(rect)
+	return grid
 
 
 def Reverse(tup):
@@ -32,28 +51,10 @@ boundaries = [
     white,
 	red,
     yellow,
-    blue
+    blue,
+
 ]
-
-
-def buildGrid(numOfRects, thickness, dim):
-	rect = []
-	grid = []
-	for i in range(0,numOfRects):
-		for j in range(0,numOfRects):
-			startx = int((dim[0]) * (i/numOfRects)) + int(thickness/2)
-			starty = int((dim[1]) * (j/numOfRects)) + int(thickness/2)
-			endx = int((dim[0]) * ((i + 1)/numOfRects)) - int(thickness/2)
-			endy = int((dim[1]) * ((j + 1)/numOfRects)) - int(thickness/2)
-			start = (startx, starty)
-			end = (endx,endy)
-			color = (255,255,255)
-			rect = [start, end, color, thickness]
-			cv2.rectangle(image, start, end, color, thickness)
-			# grid.append(rect)
-	return grid
-
-grid = buildGrid(3, 4, imageDimensions)
+grid = buildGrid(Squares, 4, imageDimensions)
 
 for boundary in boundaries:
     #Lists read in reverse (BRG)
@@ -73,8 +74,11 @@ for (lower, upper) in boundaries:
 
 	# show the images
 	cv2.imshow("images", np.hstack([image, output]))
-
 	cv2.waitKey(0)
 
 # brightLAB = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
 
+output = cv2.bitwise_and(image, image, mask = mask)
+
+cv2.imshow("images", np.hstack([image, output]))
+cv2.waitKey(0)

@@ -16,9 +16,9 @@ blue = ([4, 60, 50], [80, 130, 255])
 
 # load the image
 image = cv2.imread(args["image"])
-Squares = args["numOfSquares"]
+squares = args["numOfSquares"]
 
-Squares = int(Squares)
+squares = int(squares)
 
 imageDimensions = image.shape
 
@@ -54,7 +54,7 @@ boundaries = [
     blue,
 
 ]
-grid = buildGrid(Squares, 4, imageDimensions)
+grid = buildGrid(squares, 4, imageDimensions)
 
 for boundary in boundaries:
     #Lists read in reverse (BRG)

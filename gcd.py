@@ -23,9 +23,10 @@ squares = int(squares)
 imageDimensions = image.shape
 
 
-def buildGrid(numOfSquares, thickness, dim):
+def buildGrid(numOfSquares, thickness, image):
 	rect = []
 	grid = []
+	dim = image.shape
 	for i in range(0,numOfSquares):
 		for j in range(0,numOfSquares):
 			startx = int((dim[0]) * (i/numOfSquares)) + int(thickness/2)
@@ -34,51 +35,56 @@ def buildGrid(numOfSquares, thickness, dim):
 			endy = int((dim[1]) * ((j + 1)/numOfSquares)) - int(thickness/2)
 			start = (startx, starty)
 			end = (endx,endy)
+			# todo: change color based on output colors in rectangle
 			color = (255,255,255)
 			rect = [start, end, color, thickness]
 			cv2.rectangle(image, start, end, color, thickness)
 			grid.append(rect)
 	return grid
 
+def detectColor(start, end, image, color):
+
+	return 
 
 def Reverse(tup):
     for x in tup:
         x.reverse()
     return tup
 
-# define the list of boundaries
-boundaries = [
+# define the list of colors
+colors = [
     white,
 	red,
     yellow,
-    blue,
-
+    blue
 ]
-grid = buildGrid(squares, 4, imageDimensions)
 
-for boundary in boundaries:
+
+for boundary in colors:
     #Lists read in reverse (BRG)
     Reverse(boundary)
 
 
-# loop over the boundaries
-for (lower, upper) in boundaries:
- 	# create NumPy arrays from the boundaries
+# loop over the colors
+for (lower, upper) in colors:
+ 	# create NumPy arrays from the colors
 	lower = np.array(lower, dtype = "uint8")
 	upper = np.array(upper, dtype = "uint8")
 
-	# find the colors within the specified boundaries and apply
+	# find the colors within the specified colors and apply
 	# the mask
 	mask = cv2.inRange(image, lower, upper)
 	output = cv2.bitwise_and(image, image, mask = mask)
+	output2 = cv2.bitwise_and(image, image, mask = mask)
+	grid = buildGrid(squares, 4, output2)
 
 	# show the images
-	cv2.imshow("images", np.hstack([image, output]))
+	cv2.imshow("images", np.hstack([image, output, output2]))
 	cv2.waitKey(0)
 
 # brightLAB = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
 
-output = cv2.bitwise_and(image, image, mask = mask)
+# output = cv2.bitwise_and(image, image, mask = mask)
 
-cv2.imshow("images", np.hstack([image, output]))
+# cv2.imshow("images", np.hstack([image, output]))
 cv2.waitKey(0)

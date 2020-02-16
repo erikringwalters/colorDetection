@@ -23,21 +23,21 @@ squares = int(squares)
 imageDimensions = image.shape
 
 
-def buildGrid(numOfSquares, thickness, image, lower, upper):
+def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 	rect = []
 	grid = []
 	lowerv = np.vectorize(lower)
-	dim = image.shape
+	dim = inimg.shape
 	print(upper)
 
 	for i in range(0,numOfSquares):
 		for j in range(0,numOfSquares):
-			startx = int((dim[0]) * (j/numOfSquares)) + int(thickness/2)
-			starty = int((dim[1]) * (i/numOfSquares)) + int(thickness/2)
-			endx = int((dim[0]) * ((j + 1)/numOfSquares)) - int(thickness/2)
-			endy = int((dim[1]) * ((i + 1)/numOfSquares)) - int(thickness/2)
+			startx = int((dim[0]) * (i/numOfSquares)) + int(thickness/2)
+			starty = int((dim[1]) * (j/numOfSquares)) + int(thickness/2)
+			endx = int((dim[0]) * ((i + 1)/numOfSquares)) - int(thickness/2)
+			endy = int((dim[1]) * ((j + 1)/numOfSquares)) - int(thickness/2)
 			
-			roi = image[startx:endx, starty:endy]
+			roi = inimg[startx:endx, starty:endy]
 			start = (startx, starty)
 			end = (endx,endy)
 
@@ -46,7 +46,7 @@ def buildGrid(numOfSquares, thickness, image, lower, upper):
 			else:
 				color = (255,255,255)
 			rect = [start, end, color, thickness]
-			cv2.rectangle(image, start, end, color, thickness)
+			cv2.rectangle(outimg, start, end, color, thickness)
 			grid.append(rect)
 	return grid
 
@@ -90,6 +90,7 @@ for (lower, upper) in colors:
 	grid = buildGrid(
 		squares, 
 		4, 
+		output,
 		output2, 
 		lower, 
 		upper

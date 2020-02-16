@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sunday 2/16/2020
+
+@author: Erik
+"""
 import numpy as np
 import argparse
 import cv2

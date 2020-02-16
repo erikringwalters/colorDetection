@@ -6,6 +6,7 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help = "path to the image")
 ap.add_argument("-n", "--numOfSquares", help = "number of rectangles on grid")
+ap.add_argument("-t", "--threshold", help = "color accuracy threshold")
 
 args = vars(ap.parse_args())
 
@@ -17,10 +18,19 @@ blue = ([4, 60, 50], [80, 130, 255])
 # load the image
 image = cv2.imread(args["image"])
 squares = args["numOfSquares"] 
+threshold = args["threshold"]
 
 squares = int(squares)
+threshold = float(threshold)
 
-imageDimensions = image.shape
+# define the list of colors
+colors = [
+    white,
+	red,
+    yellow,
+    blue
+]
+
 
 
 def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
@@ -39,7 +49,7 @@ def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 			start = (startx, starty)
 			end = (endx, endy)
 
-			if(detectColor(roi)):
+			if(detectColor(roi, threshold)):
 				color = np.ndarray.tolist(upper)
 			else:
 				color = (0,0,0)
@@ -49,9 +59,8 @@ def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 	return grid
 
 
-def detectColor(roi):
-	threshold = (roi.shape[0] * roi.shape[1]) * 0.1
-	print(threshold)
+def detectColor(roi, threshold):
+	threshold = (roi.shape[0] * roi.shape[1]) * threshold
 	gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 	nonz = cv2.countNonZero(gray)
 	return nonz > threshold
@@ -71,18 +80,10 @@ def Reverse(tup):
     return tup
 
 
-# define the list of colors
-colors = [
-    white,
-	red,
-    yellow,
-    blue
-]
-
-
 for boundary in colors:
     #Lists read in reverse (BRG)
     Reverse(boundary)
+
 
 
 # loop over the colors

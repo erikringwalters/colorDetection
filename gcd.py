@@ -16,7 +16,7 @@ blue = ([4, 60, 50], [80, 130, 255])
 
 # load the image
 image = cv2.imread(args["image"])
-squares = args["numOfSquares"]
+squares = args["numOfSquares"] 
 
 squares = int(squares)
 
@@ -28,8 +28,6 @@ def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 	grid = []
 	lowerv = np.vectorize(lower)
 	dim = inimg.shape
-	print(upper)
-
 	for i in range(0,numOfSquares):
 		for j in range(0,numOfSquares):
 			startx = int((dim[0]) * (i/numOfSquares)) + int(thickness/2)
@@ -44,23 +42,32 @@ def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 			if(detectColor(roi)):
 				color = np.ndarray.tolist(upper)
 			else:
-				color = (255,255,255)
+				color = (0,0,0)
 			rect = [start, end, color, thickness]
 			cv2.rectangle(outimg, start, end, color, thickness)
 			grid.append(rect)
 	return grid
 
+
 def detectColor(roi):
 	gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 	nonz = cv2.countNonZero(gray)
-	roi.shape
-	print(nonz)
-	return nonz > 10
+	return nonz > 1
+
+
+def drawBorder(stack, color, thickness):
+	for image in stack:
+		start_point = (0,0)
+		end_point = (image.shape[0] - thickness, image.shape[1] - thickness)
+		image = cv2.rectangle(image, start_point, end_point, color, thickness) 
+	return stack
+
 
 def Reverse(tup):
     for x in tup:
         x.reverse()
     return tup
+
 
 # define the list of colors
 colors = [
@@ -96,8 +103,12 @@ for (lower, upper) in colors:
 		upper
 		)
 
-	# show the images
-	cv2.imshow("images", np.hstack([image, output, output2]))
+	borderColor = (0, 0, 255)
+	thickness = 1
+	images = [image, output, output2]
+	images = drawBorder(images, borderColor, thickness)
+
+	cv2.imshow("images", np.hstack(images))
 	cv2.waitKey(0)
 
 # brightLAB = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)

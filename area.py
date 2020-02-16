@@ -24,9 +24,6 @@ starty = int(centery) - int(roi/2)
 endx = int(centerx) + int(roi/2)
 endy = int(centery) + int(roi/2)
 
-start = (startx, starty)
-end = (endx, endy)
-
 roi = image[startx:endx, starty:endy]
 cv2.imshow("image", image)
 cv2.waitKey(0)

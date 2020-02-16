@@ -42,9 +42,10 @@ def buildGrid(numOfSquares, thickness, image):
 			grid.append(rect)
 	return grid
 
-def detectColor(start, end, image, color):
-
-	return 
+# def detectColor(start, end, image, color):
+# 	area = image[start, end]
+# 	cv2.imshow(area)
+# 	return 
 
 def Reverse(tup):
     for x in tup:

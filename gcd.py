@@ -50,9 +50,11 @@ def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 
 
 def detectColor(roi):
+	threshold = (roi.shape[0] * roi.shape[1]) * 0.1
+	print(threshold)
 	gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 	nonz = cv2.countNonZero(gray)
-	return nonz > 1
+	return nonz > threshold
 
 
 def drawBorder(stack, color, thickness):

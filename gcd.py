@@ -37,9 +37,9 @@ def buildGrid(numOfSquares, thickness, inimg, outimg, lower, upper):
 			endx = int((dim[0]) * ((i + 1)/numOfSquares)) - int(thickness/2)
 			endy = int((dim[1]) * ((j + 1)/numOfSquares)) - int(thickness/2)
 			
-			roi = inimg[startx:endx, starty:endy]
+			roi = inimg[starty:endy, startx:endx]
 			start = (startx, starty)
-			end = (endx,endy)
+			end = (endx, endy)
 
 			if(detectColor(roi)):
 				color = np.ndarray.tolist(upper)
